@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Proveedor>
+
+@{
+    ViewData["Title"] = "Lista de Proveedores";
+}
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/17519/17519593.png">
+    <style>
+        .brand-header img {
+            width: 48px;
+            height: 48px;
+            margin-right: 12px;
+        }
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .shadow-custom {
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07), 0 1.5px 3px rgba(0,0,0,0.03);
+        }
+        .footer {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="brand-header">
+            <img src="https://cdn-icons-png.flaticon.com/128/15546/15546746.png" alt="Logo Proveedores">
+            <h1 class="fw-bold mb-0 text-dark">Proveedores</h1>
+        </div>
+
+        <div class="card shadow-custom mb-4">
+            <div class="card-body fs-5 text-secondary">
+                <p class="mb-0">
+                    Consulta la lista de proveedores registrados. Haz clic en <span class="badge bg-info text-light">Ver</span> para más información.
+                </p>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <a class="btn btn-primary px-4 fw-semibold shadow-sm" asp-action="Create">
+                <i class="bi bi-plus-circle"></i> Crear nuevo proveedor
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle text-center bg-white shadow-custom">
+                <thead class="table-info">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Empresa</th>
+                        <th>Correo</th>
+                        <th>Contacto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold text-dark">@item.Nombre</td>
+                            <td class="fw-semibold text-secondary">@item.Empresa</td>
+                            <td class="fw-semibold text-primary">@item.Correo</td>
+                            <td class="fw-semibold text-success">@item.NumeroContacto</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-info px-3 fw-semibold shadow-sm" asp-action="Details" asp-route-id="@item.Id">
+                                    Ver
+                                </a>
+                                <a class="btn btn-sm btn-outline-warning px-3 fw-semibold shadow-sm" asp-action="Edit" asp-route-id="@item.Id">
+                                    Editar
+                                </a>
+                                <a class="btn btn-sm btn-outline-danger px-3 fw-semibold shadow-sm" asp-action="Delete" asp-route-id="@item.Id">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="footer mt-5 py-3 text-center text-secondary">
+        <div class="d-flex justify-content-center align-items-center gap-2">
+            <img src="https://cdn-icons-png.flaticon.com/128/7626/7626599.png" width="24" height="24" alt="Footer icon">
+            <span>&copy;Tristemente ya no es el colma-don</span>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</body>
+</html>

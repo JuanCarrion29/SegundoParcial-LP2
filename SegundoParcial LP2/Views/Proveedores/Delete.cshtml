@@ -1,0 +1,54 @@
+﻿@model Proveedor
+
+@{
+    ViewData["Title"] = "Eliminar Proveedor";
+}
+
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/128/15546/15546746.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .shadow-custom {
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07), 0 1.5px 3px rgba(0,0,0,0.03);
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="brand-header d-flex align-items-center gap-3 mb-4">
+            <img src="https://cdn-icons-png.flaticon.com/128/743/743131.png" alt="Logo Proveedor" width="40" height="40">
+            <h1 class="fw-bold text-dark mb-0">Eliminar proveedor</h1>
+        </div>
+
+        <div class="card shadow-custom mb-4">
+            <div class="card-body fs-5 text-secondary">
+                ¿Estás seguro de que deseas eliminar a este proveedor?
+            </div>
+        </div>
+
+        <div class="card shadow-custom mb-4">
+            <div class="card-body fs-5">
+                <div><strong><i class="bi bi-person"></i> Nombre:</strong> @Model.Nombre</div>
+                <div><strong><i class="bi bi-buildings"></i> Empresa:</strong> @Model.Empresa</div>
+                <div><strong><i class="bi bi-envelope"></i> Correo:</strong> @Model.Correo</div>
+                <div><strong><i class="bi bi-telephone"></i> Contacto:</strong> @Model.NumeroContacto</div>
+            </div>
+        </div>
+
+        <form asp-action="Delete" class="d-flex gap-2">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger px-4 fw-semibold shadow-sm">
+                <i class="bi bi-trash"></i> Eliminar
+            </button>
+            <a asp-action="Index" class="btn btn-secondary px-4 fw-semibold shadow-sm">
+                <i class="bi bi-x-circle"></i> Cancelar
+            </a>
+        </form>
+    </div>
+</body>
+</html>
